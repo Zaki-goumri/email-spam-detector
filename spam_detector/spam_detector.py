@@ -26,7 +26,6 @@ def load_kaggle_dataset():
 
 def load_enhanced_builtin_dataset():
     emails_data = [
-        # More diverse SPAM examples
         ("Get rich quick! Click here now!", "spam"),
         ("Congratulations! You've won $1000000!", "spam"),
         ("FREE MONEY! NO STRINGS ATTACHED!", "spam"),
@@ -53,11 +52,10 @@ def load_enhanced_builtin_dataset():
         ("ALERT: Suspicious activity on your account", "spam"),
         ("Win a free vacation! Enter now!", "spam"),
         ("Lose 30 pounds in 30 days guaranteed", "spam"),
-        ("Your order is ready for pickup", "spam"),  # tricky spam
+        ("Your order is ready for pickup", "spam"),
         ("CONGRATULATIONS LOTTERY WINNER!", "spam"),
         ("Free trial - no credit card required!", "spam"),
         ("Make money with cryptocurrency secrets", "spam"),
-        # More diverse LEGITIMATE examples
         ("Meeting scheduled for tomorrow at 3pm", "ham"),
         ("Can you review the project proposal?", "ham"),
         ("Please find the attached document", "ham"),
@@ -157,7 +155,7 @@ test_emails = [
     "Can we schedule a meeting for next week?",
     "FREE GIFT! Limited time only!",
     "Thanks for sending the report",
-    "You've won a million dollars!",  # This should be spam now!
+    "You've won a million dollars!",
     "Let's discuss the project tomorrow",
 ]
 
