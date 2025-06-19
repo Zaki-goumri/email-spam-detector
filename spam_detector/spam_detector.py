@@ -11,12 +11,12 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-def load_lkaggle_dataset():
+def load_kaggle_dataset():
     try:
-        df = pd.read_csv("./dataset/spam.csv", encoding="latin-1")
-        df = df[["v1", "v2"]].copy
+        df = pd.read_csv("../dataset/spam.csv", encoding="latin-1")
+        df = df[["v1", "v2"]].copy()
         df.columns = ["label", "message"]
-        df["label"].map({"spam": "spam", "ham": "ham"})
+        df["label"] = df["label"].map({"spam": "spam", "ham": "ham"})
         print("✅ Successfully loaded Kaggle dataset!")
         return df["message"], df["label"]
     except FileNotFoundError:
@@ -96,7 +96,7 @@ def load_enhanced_builtin_dataset():
 print("🤖 BUILDING MY FIRST AI - SPAM DETECTOR")
 print("=" * 50)
 
-X, Y = load_lkaggle_dataset()
+X, Y = load_kaggle_dataset()
 
 print("📊 Dataset Analysis:")
 print(f"Dataset size: {len(X):,} messages")
