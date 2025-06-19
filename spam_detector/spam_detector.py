@@ -17,10 +17,10 @@ def load_kaggle_dataset():
         df = df[["v1", "v2"]].copy()
         df.columns = ["label", "message"]
         df["label"] = df["label"].map({"spam": "spam", "ham": "ham"})
-        print("✅ Successfully loaded Kaggle dataset!")
+        print("Successfully loaded Kaggle dataset!")
         return df["message"], df["label"]
     except FileNotFoundError:
-        print("❌ Kaggle dataset not found. Using enhanced built-in dataset...")
+        print("Kaggle dataset not found. Using enhanced built-in dataset...")
         return load_enhanced_builtin_dataset()
 
 
@@ -91,12 +91,12 @@ def load_enhanced_builtin_dataset():
     return df["message"], df["label"]
 
 
-print("🤖 BUILDING MY FIRST AI - SPAM DETECTOR")
+print("BUILDING MY FIRST AI - SPAM DETECTOR")
 print("=" * 50)
 
 X, Y = load_kaggle_dataset()
 
-print("📊 Dataset Analysis:")
+print("Dataset Analysis:")
 print(f"Dataset size: {len(X):,} messages")
 spam_ratio = (Y == "spam").mean()
 print(f"   Spam ratio: {spam_ratio:.1%}")
@@ -106,8 +106,8 @@ X_train, X_test, Y_train, Y_test = train_test_split(
     X, Y, test_size=0.2, random_state=42, stratify=Y
 )
 
-print(f"📚 Training set: {len(X_train)} emails")
-print(f"🧪 Testing set: {len(X_test)} emails")
+print(f"Training set: {len(X_train)} emails")
+print(f"Testing set: {len(X_test)} emails")
 print()
 
 
@@ -147,7 +147,7 @@ for name, model in models.items():
         best_model = model
         best_name = name
 
-print(f"🏆 Best Model: {best_name} ({best_accuracy:.1%} accuracy)")
+print(f"Best Model: {best_name} ({best_accuracy:.1%} accuracy)")
 print(classification_report(Y_test, results[best_name]["predictions"]))
 
 test_emails = [
@@ -164,13 +164,5 @@ for email in test_emails:
     probabilities = best_model.predict_proba([email])[0]
     confidence = max(probabilities)
 
-    status = "🚨 SPAM" if prediction == "spam" else "✅ LEGITIMATE"
+    status = "🚨 SPAM" if prediction == "spam" else "LEGITIMATE"
     print(f"{status} ({confidence:.1%}): '{email}'")
-
-print("\n" + "=" * 50)
-print("🎉 IMPROVEMENTS MADE:")
-print("✅ 3x larger dataset (60 vs 24 emails)")
-print("✅ Better text processing (bigrams, max features)")
-print("✅ Balanced dataset (equal spam/ham)")
-print("✅ Stratified sampling")
-print("✅ Tuned algorithm parameters")
