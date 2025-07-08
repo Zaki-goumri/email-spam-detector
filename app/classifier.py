@@ -4,8 +4,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import accuracy_score, classification_report
 from sklearn.pipeline import Pipeline
-import seaborn as sns
-import matplotlib.pyplot as plt
 import warnings
 
 warnings.filterwarnings("ignore")
@@ -16,7 +14,6 @@ def load_kaggle_dataset():
         df = pd.read_csv("./dataset/spam.csv", encoding="latin-1")
         df = df[["v1", "v2"]].copy()
         df.columns = ["label", "message"]
-        df["label"] = df["label"].map({"spam": "spam", "ham": "ham"})
         print("Successfully loaded Kaggle dataset!")
         return df["message"], df["label"]
     except FileNotFoundError:
@@ -149,20 +146,3 @@ for name, model in models.items():
 
 print(f"Best Model: {best_name} ({best_accuracy:.1%} accuracy)")
 print(classification_report(Y_test, results[best_name]["predictions"]))
-
-test_emails = [
-    "URGENT! Your account will be suspended!",
-    "Can we schedule a meeting for next week?",
-    "FREE GIFT! Limited time only!",
-    "Thanks for sending the report",
-    "You've won a million dollars!",
-    "Let's discuss the project tomorrow",
-]
-
-for email in test_emails:
-    prediction = best_model.predict([email])[0]
-    probabilities = best_model.predict_proba([email])[0]
-    confidence = max(probabilities)
-
-    status = "SPAM" if prediction == "spam" else "LEGITIMATE"
-    print(f"{status} ({confidence:.1%}): '{email}'")

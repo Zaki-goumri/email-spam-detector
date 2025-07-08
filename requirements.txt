@@ -4,3 +4,4 @@ seaborn
 matplotlib
 fastapi
 uvicorn
+joblib
